@@ -1,0 +1,46 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.project
+.settings/
+bin/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Application
+data/
+cache/
+logs/
+*.log
+
+# Environment
+.env
+!.env.example
+
+# Docker
+.docker/
+
+# Others
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz

@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+app:
+  external:
+    countries-api: https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies
+    exchange-api: https://open.er-api.com/v6/latest/USD
+    timeout: 10000
+    
+logging:
+  level:
+    com.haidara.countryapi: INFO

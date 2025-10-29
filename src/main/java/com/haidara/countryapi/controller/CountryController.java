@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("")
 public class CountryController {
     
     private final CountryService countryService;

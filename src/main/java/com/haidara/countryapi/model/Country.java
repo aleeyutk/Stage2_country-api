@@ -1,48 +1,36 @@
 package com.haidara.countryapi.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "countries")
 public class Country {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank(message = "Name is required")
-    @Column(unique = true, nullable = false)
     private String name;
-
     private String capital;
     private String region;
-
-    @NotNull(message = "Population is required")
     private Long population;
 
-    @Column(name = "currency_code")
+    @JsonProperty("currency_code")
     private String currencyCode;
 
-    @Column(name = "exchange_rate")
+    @JsonProperty("exchange_rate")
     private Double exchangeRate;
 
-    @Column(name = "estimated_gdp")
+    @JsonProperty("estimated_gdp")
     private Double estimatedGdp;
 
-    @Column(name = "flag_url")
     private String flagUrl;
-
-    @Column(name = "last_refreshed_at")
     private LocalDateTime lastRefreshedAt;
 
-    // Constructors
     public Country() {}
 
-    public Country(String name, String capital, String region, Long population, 
-                   String currencyCode, Double exchangeRate, Double estimatedGdp, 
-                   String flagUrl) {
+    public Country(String name, String capital, String region, Long population,
+                   String currencyCode, Double exchangeRate,
+                   Double estimatedGdp, String flagUrl) {
         this.name = name;
         this.capital = capital;
         this.region = region;
@@ -54,9 +42,7 @@ public class Country {
         this.lastRefreshedAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // --- Getters & Setters ---
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

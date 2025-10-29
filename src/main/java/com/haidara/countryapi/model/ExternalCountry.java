@@ -1,43 +1,56 @@
 package com.haidara.countryapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalCountry {
-    private String name;
-    private String capital;
+
+    @JsonProperty("name")
+    private Map<String, Object> nameObj;
+
+    @JsonProperty("capital")
+    private List<String> capitalList;
+
     private String region;
     private Long population;
-    private String flag;
-    
-    @JsonProperty("currencies")
-    private List<Currency> currencies;
 
-    public static class Currency {
-        private String code;
-        private String name;
-        private String symbol;
+    @JsonProperty("flags")
+    private Map<String, Object> flags;
 
-        // Getters and Setters
-        public String getCode() { return code; }
-        public void setCode(String code) { this.code = code; }
-        public String getName() { return name; }
-        public void setName(String name) { this.name = name; }
-        public String getSymbol() { return symbol; }
-        public void setSymbol(String symbol) { this.symbol = symbol; }
+    private Map<String, Object> currencies;
+
+    // === Derived getters ===
+
+    public String getName() {
+        if (nameObj != null && nameObj.get("common") != null)
+            return nameObj.get("common").toString();
+        return null;
     }
 
-    // Getters and Setters
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getCapital() { return capital; }
-    public void setCapital(String capital) { this.capital = capital; }
+    public String getCapital() {
+        return (capitalList != null && !capitalList.isEmpty()) ? capitalList.get(0) : null;
+    }
+
     public String getRegion() { return region; }
-    public void setRegion(String region) { this.region = region; }
+
     public Long getPopulation() { return population; }
+
+    public String getFlag() {
+        if (flags != null && flags.get("png") != null)
+            return flags.get("png").toString();
+        return null;
+    }
+
+    public Map<String, Object> getCurrencies() { return currencies; }
+
+    // === Setters ===
+    public void setNameObj(Map<String, Object> nameObj) { this.nameObj = nameObj; }
+    public void setCapitalList(List<String> capitalList) { this.capitalList = capitalList; }
+    public void setRegion(String region) { this.region = region; }
     public void setPopulation(Long population) { this.population = population; }
-    public String getFlag() { return flag; }
-    public void setFlag(String flag) { this.flag = flag; }
-    public List<Currency> getCurrencies() { return currencies; }
-    public void setCurrencies(List<Currency> currencies) { this.currencies = currencies; }
+    public void setFlags(Map<String, Object> flags) { this.flags = flags; }
+    public void setCurrencies(Map<String, Object> currencies) { this.currencies = currencies; }
 }

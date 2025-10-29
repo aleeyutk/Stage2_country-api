@@ -1,6 +1,6 @@
 server:
   port: 8080
-  
+
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -21,10 +21,10 @@ spring:
 
 app:
   external:
-    countries-api: https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies
+    countries-api: https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags,currencies
     exchange-api: https://open.er-api.com/v6/latest/USD
     timeout: 10000
-    
+
 logging:
   level:
     com.haidara.countryapi: INFO
